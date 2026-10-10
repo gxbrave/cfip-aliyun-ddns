@@ -1,0 +1,16 @@
+services:
+  cfip-ddns:
+    build: .
+    image: cfip-aliyun-ddns:local
+    platform: linux/amd64
+    restart: unless-stopped
+    env_file: .env
+    volumes:
+      - cfip-data:/app/data
+    sysctls:
+      net.ipv4.ping_group_range: "0 2147483647"
+    stop_grace_period: 15s
+    security_opt:
+      - no-new-privileges:true
+volumes:
+  cfip-data:

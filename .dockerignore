@@ -1,0 +1,9 @@
+*
+!Dockerfile
+!go.mod
+!cmd/
+!cmd/**
+!cfst
+!ip.txt
+!third_party/
+!third_party/**

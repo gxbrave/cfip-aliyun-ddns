@@ -1,0 +1,28 @@
+[Unit]
+Description=Cloudflare IP optimizer and Aliyun DDNS
+Wants=network-online.target
+After=network-online.target
+StartLimitIntervalSec=300
+StartLimitBurst=5
+
+[Service]
+Type=simple
+User=cfip-ddns
+Group=cfip-ddns
+WorkingDirectory=/opt/cfip-ddns
+ExecStart=/opt/cfip-ddns/cfip-ddns --env-file /opt/cfip-ddns/.env --data-dir /opt/cfip-ddns
+Restart=on-failure
+RestartSec=30
+TimeoutStopSec=15
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ReadWritePaths=/opt/cfip-ddns
+ProtectHome=true
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
+AmbientCapabilities=CAP_NET_RAW
+CapabilityBoundingSet=CAP_NET_RAW
+
+[Install]
+WantedBy=multi-user.target
