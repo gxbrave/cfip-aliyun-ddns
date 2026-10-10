@@ -2,7 +2,7 @@
 set -eu
 
 REPO="${CFIP_REPO:-gxbrave/cfip-aliyun-ddns}"
-VERSION="${CFIP_VERSION:-v1.0.0}"
+VERSION="${CFIP_VERSION:-v1.0.1}"
 MIRROR="${CFIP_MIRROR:-github}"
 ASSET="cfip-ddns-linux-amd64.tar.gz"
 BASE="https://github.com/$REPO/releases/download/$VERSION"

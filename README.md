@@ -76,7 +76,7 @@ DOWNLOAD_URL=https://download.parallels.com/desktop/v17/17.1.1-51537/ParallelsDe
 
 ## 一键安装与公开仓库
 
-仓库地址：[https://github.com/gxbrave/cfip-aliyun-ddns](https://github.com/gxbrave/cfip-aliyun-ddns)。项目只支持 Linux amd64。下面的命令下载已构建的 amd64 发行包，不需要 Go：
+仓库地址：[https://github.com/gxbrave/cfip-aliyun-ddns](https://github.com/gxbrave/cfip-aliyun-ddns)。项目只支持 Linux amd64。项目代码使用 MIT License；仓库内随附的 `cfst` 是 CloudflareSpeedTest v2.3.5，属于独立的 GPL-3.0 程序，许可证和对应版本源码压缩包位于 `third_party/CloudflareSpeedTest`。本项目通过启动外部 `cfst` 进程调用它，未修改其源码。分发本项目时请同时保留该目录及其许可证。下面的命令下载已构建的 amd64 发行包，不需要 Go：
 
 ```bash
 # GitHub 官方地址
@@ -86,7 +86,7 @@ curl -fsSL https://raw.githubusercontent.com/gxbrave/cfip-aliyun-ddns/main/scrip
 curl -fsSL https://ghfast.top/https://raw.githubusercontent.com/gxbrave/cfip-aliyun-ddns/main/scripts/install-online.sh | sudo CFIP_MIRROR=ghfast sh
 ```
 
-安装脚本会校验 SHA-256，并把程序、配置、cfst、IP 列表和状态放入 `/opt/cfip-ddns`。首次安装后编辑 `/opt/cfip-ddns/.env`，再执行 `sudo systemctl enable --now cfip-ddns`。升级时重复运行同一命令，会保留现有配置和缓存。可通过 `CFIP_VERSION=v1.0.0`、`CFIP_MIRROR=github|ghfast`、`CFIP_REPO=owner/repo` 覆盖默认值。
+安装脚本会校验 SHA-256，并把程序、配置、cfst、IP 列表和状态放入 `/opt/cfip-ddns`。首次安装后编辑 `/opt/cfip-ddns/.env`，再执行 `sudo systemctl enable --now cfip-ddns`。升级时重复运行同一命令，会保留现有配置和缓存。可通过 `CFIP_VERSION=v1.0.1`、`CFIP_MIRROR=github|ghfast`、`CFIP_REPO=owner/repo` 覆盖默认值。
 
 ## Debian / systemd
 
