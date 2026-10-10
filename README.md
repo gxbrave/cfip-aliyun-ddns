@@ -74,6 +74,20 @@ DOWNLOAD_URL=https://download.parallels.com/desktop/v17/17.1.1-51537/ParallelsDe
 
 `bestip.txt` 统一存放在数据目录。若已有旧缓存，可在服务停止时复制到该目录，并确保服务用户有读写权限。
 
+## 一键安装与公开仓库
+
+仓库地址：[https://github.com/gxbrave/cfip-aliyun-ddns](https://github.com/gxbrave/cfip-aliyun-ddns)。项目只支持 Linux amd64。下面的命令下载已构建的 amd64 发行包，不需要 Go：
+
+```bash
+# GitHub 官方地址
+curl -fsSL https://raw.githubusercontent.com/gxbrave/cfip-aliyun-ddns/main/scripts/install-online.sh | sudo sh
+
+# 国内加速：脚本本身和发行包都通过 ghfast.top
+curl -fsSL https://ghfast.top/https://raw.githubusercontent.com/gxbrave/cfip-aliyun-ddns/main/scripts/install-online.sh | sudo CFIP_MIRROR=ghfast sh
+```
+
+安装脚本会校验 SHA-256，并把程序、配置、cfst、IP 列表和状态放入 `/opt/cfip-ddns`。首次安装后编辑 `/opt/cfip-ddns/.env`，再执行 `sudo systemctl enable --now cfip-ddns`。升级时重复运行同一命令，会保留现有配置和缓存。可通过 `CFIP_VERSION=v1.0.0`、`CFIP_MIRROR=github|ghfast`、`CFIP_REPO=owner/repo` 覆盖默认值。
+
 ## Debian / systemd
 
 在构建机器安装 Go 1.23+，运行：
@@ -106,6 +120,17 @@ sudo systemctl disable --now cfip-ddns
 修改配置后重启服务。也可以直接运行 `./cfip-ddns`。
 
 ## Docker
+
+从 GitHub 获取完整 Docker 配置（不会把 `.env` 提交到仓库）：
+
+```bash
+git clone https://github.com/gxbrave/cfip-aliyun-ddns.git
+# 国内网络可使用：git clone https://ghfast.top/https://github.com/gxbrave/cfip-aliyun-ddns.git
+cd cfip-aliyun-ddns
+cp .env.example .env
+# 编辑 .env 后构建并启动
+docker compose up -d --build
+```
 
 ```bash
 cp .env.example .env

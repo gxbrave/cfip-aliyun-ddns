@@ -8,7 +8,7 @@ install -m 644 ip.txt dist/ip.txt
 install -m 644 .env.example dist/.env.example
 mkdir -p dist/deploy dist/scripts
 install -m 644 deploy/cfip-ddns.service dist/deploy/cfip-ddns.service
-install -m 755 scripts/install.sh dist/scripts/install.sh
+install -m 755 scripts/install.sh scripts/install-online.sh dist/scripts/
 install -m 644 README.md dist/README.md
 mkdir -p dist/third_party
 cp -R third_party/CloudflareSpeedTest dist/third_party/
