@@ -9,7 +9,7 @@ install -m 644 .env.example dist/.env.example
 mkdir -p dist/deploy dist/scripts
 install -m 644 deploy/cfip-ddns.service dist/deploy/cfip-ddns.service
 install -m 755 scripts/install.sh scripts/install-online.sh dist/scripts/
-install -m 644 README.md dist/README.md
+install -m 644 README.md LICENSE dist/
 mkdir -p dist/third_party
 cp -R third_party/CloudflareSpeedTest dist/third_party/
 tar -czf dist/cfip-ddns-linux-amd64.tar.gz -C dist cfip-ddns cfst ip.txt .env.example deploy scripts README.md LICENSE third_party
